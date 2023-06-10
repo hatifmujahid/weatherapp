@@ -1,31 +1,20 @@
 // import modules
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
 require("dotenv").config();
+const { ApolloServer, gql } = require('@apollo/server');
+const {startStandaloneServer} = require('@apollo/server/standalone');
 
-// app
-const server = express();
+// import schema
+const typeDefs = require('./schema');
+
+// import resolvers
+const resolvers = require('./resolvers');
+
+// create server
+async function startApolloServer() {
+    const server = new ApolloServer({typeDefs,resolvers});
+    const {url} = await startStandaloneServer(server);
+    console.log(`Server ready at ${url}`);
+}
+startApolloServer();
 
 
-// db
-mongoose.connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-.then(() => console.log('MongoDB connected...'))
-.catch(err => console.log(err));
-
-
-// middleware
-server.use(cors({ origin: true, credentials: true }));
-
-
-// routes
-const port = process.env.PORT || 5000;
-
-// listener
-server.listen(port, () => {
-    console.log(`Server is running on port: ${port}`);
-    }
-);

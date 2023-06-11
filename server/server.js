@@ -1,6 +1,6 @@
 // import modules
 require("dotenv").config();
-const { ApolloServer, gql } = require('@apollo/server');
+const { ApolloServer } = require('@apollo/server');
 const {startStandaloneServer} = require('@apollo/server/standalone');
 
 // import schema

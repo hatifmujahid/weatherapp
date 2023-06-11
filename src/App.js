@@ -1,7 +1,6 @@
 import './App.css';
 import React from 'react';
-import {Stack} from '@mui/material';
-
+import WeatherData from './components/data';
 
 function App() {
   const [lat, setLat] = React.useState(0);
@@ -16,7 +15,7 @@ function App() {
   console.log(lat,lon);
   return (
     <div className="App">
-      <h1>hello</h1>
+      <WeatherData lat={lat} lon={lon}/>
     </div>
   );
 }

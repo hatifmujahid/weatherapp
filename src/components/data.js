@@ -3,6 +3,8 @@ import { useQuery, gql } from "@apollo/client";
 import CircularProgress from '@mui/joy/CircularProgress';
 import { Card, CardContent, Typography } from "@mui/material";
 import './data.css';
+import rain from '../assets/rain.jpg';
+import sunny from '../assets/sunny.jpg';
 
 const WEATHER_QUERY = gql`
   query GetWeather($lat: Float!, $lon: Float!) {
@@ -40,11 +42,12 @@ const WeatherData = (props) => {
   if (loading) return <CircularProgress size="lg" />;
   if (error) return <p>Error: {error.message}</p>;
   if (!data) return null;
-
   const weather = data.getWeather;
+  const image = weather.weather[0].main === 'Clouds' ? rain : sunny;
 
   return (
-    <Card className={"weather-card"}>
+    <div className="weather-data" style={{backgroundImage:`url(${image})`}}>
+    <Card className={"weather-card"} >
       <CardContent>
         <Typography variant="h5" component="div">
           {weather.name}
@@ -73,8 +76,10 @@ const WeatherData = (props) => {
         <Typography variant="body2">
           Country: {weather.sys.country}
         </Typography>
+        
       </CardContent>
     </Card>
+    </div>
   );
 };
 

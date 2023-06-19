@@ -12,7 +12,8 @@ const resolvers = require('./resolvers');
 // create server
 async function startApolloServer() {
     const server = new ApolloServer({typeDefs,resolvers});
-    const {url} = await startStandaloneServer(server);
+    const port = process.env.PORT || 4000;
+    const {url} = await startStandaloneServer(server, {listen:{port}});
     console.log(`Server ready at ${url}`);
 }
 startApolloServer();

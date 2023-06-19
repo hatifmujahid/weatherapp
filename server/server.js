@@ -11,6 +11,8 @@ const typeDefs = require('./schema');
 const resolvers = require('./resolvers');
 
 const app = express();
+app.use(helmet());
+app.use(express.json());
 const httpServer = http.createServer(app);
 
 async function myfunc(){

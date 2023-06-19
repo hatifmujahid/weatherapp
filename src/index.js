@@ -4,8 +4,9 @@ import './index.css';
 import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
+const port = process.env.PORT || 4000;
 const client = new ApolloClient({
-  uri: `http://localhost:${process.env.PORT}`,  //server address
+  uri: `http://localhost:${port}`,  //server address
   cache: new InMemoryCache(),//necessary to have 
 });
 

@@ -6,7 +6,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const port = process.env.PORT || 4000;
 const client = new ApolloClient({
-  uri: `http://localhost:${port}`,  //server address
+  uri: `http://localhost:${port}/graphql`,  //server address
   cache: new InMemoryCache(),//necessary to have 
 });
 

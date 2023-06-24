@@ -5,7 +5,7 @@ import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
 const client = new ApolloClient({
-  uri: "/api",  //server address
+  uri: "https://graphqlapi-wheat.vercel.app/graphql",  //server address
   cache: new InMemoryCache(),//necessary to have 
 });
 
@@ -13,7 +13,7 @@ const client = new ApolloClient({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+  <ApolloProvider client={client}>
     <App />
-  </React.StrictMode>
+  </ApolloProvider>
 );

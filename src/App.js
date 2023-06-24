@@ -15,8 +15,7 @@ function App() {
   console.log(lat,lon);
   return (
     <div className="App">
-      <h1>Currently working on moving website from heroku to Vercel, Stay tuned :D </h1>
-      <h1>Link: https://weatherapp-nu-beryl.vercel.app/</h1>
+      <WeatherData lat={lat} lon={lon}/>
     </div>
   );
 }

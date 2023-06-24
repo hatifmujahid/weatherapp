@@ -2,11 +2,10 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import CircularProgress from '@mui/joy/CircularProgress';
 import { Card, CardContent, Typography } from "@mui/material";
-import './data.css';
 
 const WEATHER_QUERY = gql`
-  query GetWeather($lat: Float!, $lon: Float!) {
-    getWeather(lat: $lat, lon: $lon) {
+  query ($lat:Float!, $lon:Float!){
+    getWeather(lat:$lat, lon:$lon){
       name
       weather {
         id
@@ -28,15 +27,15 @@ const WEATHER_QUERY = gql`
       sys {
         country
       }
+      
     }
-  }
+}
 `;
 
 const WeatherData = (props) => {
   const { loading, error, data } = useQuery(WEATHER_QUERY, {
     variables: { lat: props.lat, lon: props.lon },
   });
-
   if (loading) return <CircularProgress size="lg" />;
   if (error) return <p>Error: {error.message}</p>;
   if (!data) return null;
@@ -50,16 +49,16 @@ const WeatherData = (props) => {
           {weather.name}
         </Typography>
         <Typography variant="body2">
-          Temperature: {weather.main.temp}°F
+          Temperature: {weather.main.temp}°C
         </Typography>
         <Typography variant="body2">
-          Feels Like: {weather.main.feels_like}°F
+          Feels Like: {weather.main.feels_like}°C
         </Typography>
         <Typography variant="body2">
-          Min Temperature: {weather.main.temp_min}°F
+          Min Temperature: {weather.main.temp_min}°C
         </Typography>
         <Typography variant="body2">
-          Max Temperature: {weather.main.temp_max}°F
+          Max Temperature: {weather.main.temp_max}°C
         </Typography>
         <Typography variant="body2">
           Humidity: {weather.main.humidity}%

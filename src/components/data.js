@@ -8,6 +8,8 @@ import rain from "../images/rain.jpg"
 import clear from "../images/sunny.jpg"
 import haze from "../images/haze.jpg"
 import cloudy from "../images/cloudy.jpg"
+import { useEffect } from "react";
+
 
 const WeatherData = (props) => {
   const { loading, error, data } = useQuery(LOCATION_QUERY, {
@@ -19,27 +21,28 @@ const WeatherData = (props) => {
 
   const weather = data.getWeather;
   const weatherType = weather.weather[0].main;
-
-  if (weatherType === "Rain") {
-    document.body.style.backgroundImage = `url(${rain})`;
-    document.body.style.backgroundSize = "cover";
-  } else if (weatherType === "Haze") {
-    document.body.style.backgroundImage = `url(${haze})`;
-    document.body.style.backgroundSize = "cover";
+  var image = "";
+  var size = "";
+  if (weatherType === "Rain" || weatherType === "Drizzle" || weatherType === "Thunderstorm" ) {
+    image = `url(${rain})`;
+    size = "cover";
+  } else if (weatherType === "Haze" || weatherType === "Smoke") {
+    image = `url(${haze})`;
+    size = "cover";
 
   }
-  else if (weatherType === "Clear") {
-    document.body.style.backgroundImage = `url(${clear})`;
-    document.body.style.backgroundSize = "cover";
+  else if (weatherType === "Clear" ) {
+    image = `url(${clear})`;
+    size = "cover";
   }
   else if (weatherType === "Clouds") {
-    document.body.style.backgroundImage = `url(${cloudy})`;
-    document.body.style.backgroundSize = "cover";
+    image = `url(${cloudy})`;
+    size = "cover";
   }
+  
   return (
-    <div className="weather-data">
-      
-      <Card className="weather-card">
+    <div className="weather-data" style={{backgroundImage:image, backgroundSize:size}}>
+      <Card className="weather-card" sx={{backgroundColor:'#808080', color:'black'}}>
         <CardContent>
         <img src={`http://openweathermap.org/img/w/${weather.weather[0].icon}.png`} alt="weather icon" />
           <Typography variant="h5" component="div">

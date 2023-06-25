@@ -6,6 +6,9 @@ import Buttons from './components/buttons';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 
+
+
+
 function App() {
   const [lat, setLat] = React.useState(0);
   const [lon, setLon] = React.useState(0);  
@@ -15,7 +18,6 @@ function App() {
       setLon(position.coords.longitude);
     })
   }
-
   return (
     <BrowserRouter>
       <Routes>

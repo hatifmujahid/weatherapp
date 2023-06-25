@@ -6,4 +6,5 @@ export default function Search() {
       <h1>Search</h1>
     </div>
   );
+  
 }

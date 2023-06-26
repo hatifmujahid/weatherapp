@@ -13,13 +13,13 @@ import { useEffect } from "react";
 
 const WeatherData = (props) => {
   const { loading, error, data } = useQuery(LOCATION_QUERY, {
-    variables: { lat: props.lat, lon: props.lon },
+    variables: { city: props.city},
   });
   if (loading) return <CircularProgress size="lg" />;
   if (error) return <p>Error: {error.message}</p>;
   if (!data) return null;
 
-  const weather = data.getWeather;
+  const weather = data.getLocation;
   const weatherType = weather.weather[0].main;
   var image = "";
   var size = "";

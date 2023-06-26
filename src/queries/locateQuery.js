@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-const Weather_QUERY = gql`
+const LOCATION_QUERY = gql`
   query ($lat:Float!, $lon:Float!){
     getWeather(lat:$lat, lon:$lon){
       name
@@ -28,4 +28,4 @@ const Weather_QUERY = gql`
     }
 }
 `;
-export default Weather_QUERY;
+export default LOCATION_QUERY;

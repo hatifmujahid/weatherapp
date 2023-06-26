@@ -1,6 +1,6 @@
 import './App.css';
 import React from 'react';
-import WeatherData from './components/data';
+import WeatherData from './components/currentLocation';
 import FullPageSearchBox from './components/search';
 import Buttons from './components/buttons';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';

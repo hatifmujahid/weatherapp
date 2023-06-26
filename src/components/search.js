@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
-import WeatherData from "./searchLocationWeather";
+import WeatherData from "./cityWeather";
 
 const countries = [
   { label: "Afghanistan" },
